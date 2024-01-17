@@ -98,3 +98,41 @@ canvas {
   width: 100%;
   height: 100%;
 }
+
+.box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, 0);
+  width: 100px;
+  height: 100px;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+.row {
+  display: flex;
+  gap: 1vw;
+  width: min-content;
+  margin: 0 auto;
+}
+
+.column {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+
+.rect {
+  background-color: #000;
+  opacity: 0.1;
+  width: 150px;
+  height: 200px;
+}
