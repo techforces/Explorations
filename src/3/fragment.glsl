@@ -8,5 +8,6 @@ void main() {
 
     float grey = (image.r + image.g + image.b)/3.0;
 
-    gl_FragColor = mix(vec4(vec3(grey), 1.0), image, vertexColor.b);
+    // gl_FragColor = mix(vec4(vec3(grey), 1.0), image, vertexColor.b);
+    gl_FragColor = image;
 }
