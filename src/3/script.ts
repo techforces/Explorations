@@ -50,6 +50,12 @@ let arr_planes: any[] = [];
 let textures: any[] = [];
 let materials = [[], [], []];
 
+let currentRow;
+let currentIdx;
+
+let text = document.querySelectorAll(".text div span");
+let backBtn = document.querySelector(".back-btn");
+
 const planeGeometry = new THREE.PlaneGeometry(150, 200, 100, 100);
 const width = 150;
 const height = 200;
@@ -213,11 +219,109 @@ function restart(row, idx) {
   });
 }
 
+function showText() {
+  for (let i = 0; i < text.length; i++) {
+    let val = {
+      y: 100,
+    };
+
+    gsap.to(val, 0.6, {
+      y: 0,
+      delay: i * 0.07,
+      onUpdate: () => {
+        text[i].style.transform = `translateY(${val.y}%)`;
+      },
+    });
+  }
+
+  let val = {
+    opacity: 0,
+  };
+  gsap.to(val, 1, {
+    opacity: 1,
+    delay: 3.5,
+    onUpdate: () => {
+      backBtn.style.opacity = `${val.opacity}`;
+    },
+  });
+}
+
+function hideScene() {
+  // for (let i = 0; i < text.length; i++) {
+  //   let val = {
+  //     y: 0,
+  //   };
+
+  //   gsap.to(val, 0.4, {
+  //     y: 100,
+  //     // delay: i * 0.07,
+  //     onUpdate: () => {
+  //       text[i].style.transform = `translateY(${val.y}%)`;
+  //     },
+  //   });
+  // }
+
+  // gsap.to(val, 0.4, {
+  //   opacity: 0,
+  //   onUpdate: () => {
+  //     backBtn.style.opacity = `${val.opacity}`;
+  //   },
+  // });
+  let val = {
+    opacity: 0,
+  };
+
+  cover.style.display = "block";
+  // console.log(cover);
+  cover.style.opacity = "0";
+  gsap.to(val, 0.4, {
+    opacity: 1,
+    onUpdate: () => {
+      cover.style.opacity = `${val.opacity}`;
+    },
+    onComplete: () => {
+      for (let i = 0; i < text.length; i++) {
+        text[i].style.transform = `translateY(100%)`;
+      }
+
+      backBtn.style.opacity = "0";
+
+      for (let i = 0; i < planes.length; i++) {
+        for (let j = 0; j < planes[i].length; j++) {
+          planes[i][j].geometry.dispose();
+          planes[i][j].geometry = new THREE.PlaneGeometry(width, height);
+
+          materials[i][j].uniforms.planeRatio.value = width / height;
+        }
+      }
+
+      planes[currentRow][currentIdx].geometry.dispose();
+      planes[currentRow][currentIdx].geometry = new THREE.PlaneGeometry(
+        width,
+        height
+      );
+
+      setTimeout(() => {
+        cover.style.display = "none";
+      }, 200);
+
+      transitionPlanes();
+    },
+  });
+}
+
+backBtn?.addEventListener("click", () => {
+  hideScene();
+});
+
 document.addEventListener("click", () => {
   const intersects = updateRaycaster();
   if (intersects.length > 0 && clickable) {
     const row = intersects[0].object.userData.row;
     const idx = intersects[0].object.userData.idx;
+
+    currentRow = row;
+    currentIdx = idx;
 
     console.log(row, idx);
 
@@ -229,6 +333,11 @@ document.addEventListener("click", () => {
     };
 
     restart(row, idx);
+
+    setTimeout(() => {
+      showText();
+    }, 1500);
+
     clickable = false;
     gsap.to(val, 5, {
       // delay: 1,
@@ -318,13 +427,12 @@ function setup() {
 
 function transition() {
   transitionPlanes();
+  cover.style.display = "none";
   renderer.render(scene, camera);
   requestAnimationFrame(update);
 }
 
 function update() {
-  cover.style.display = "none";
-
   updateRaycaster();
 
   renderer.render(scene, camera);
