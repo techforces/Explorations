@@ -106,4 +106,53 @@ canvas {
   width: 100%;
   height: 100%;
   background-color: #fff;
+  z-index: 30;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  padding: 80px;
+  box-sizing: border-box;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 40px;
+}
+
+.text {
+  font-size: 24px;
+  line-height: 120%;
+  font-weight: 600;
+}
+
+.text-2 {
+  transform: translateX(-50%);
+}
+
+.text div {
+  overflow: hidden;
+}
+
+.text div span {
+  user-select: none; /* Standard syntax */
+  display: block;
+  transform: translateY(100%);
+}
+
+.back-btn {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0;
 }

@@ -118,9 +118,9 @@ document.addEventListener("click", () => {
 
 /* Rendering */
 function update() {
-  planeMaterial.uniforms.time.value = -performance.now() * 0.5;
   renderer.render(scene, camera);
 
+  planeMaterial.uniforms.time.value = -performance.now() * 0.5;
   requestAnimationFrame(update);
 }
 update();
