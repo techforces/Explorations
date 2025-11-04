@@ -1,16 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@200..800&display=swap");
 
-html,
-body {
-  height: 100vh;
-}
-
 body {
   padding: 0;
   margin: 0;
   font-family: Manrope;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+  background-color: #dedede;
+}
+
+.scroll-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #00090a;
+}
+
+.parent {
+  clip: rect(0, auto, auto, 0);
+}
+
+.content {
+  position: relative;
+  z-index: 5;
 }
 
 .intro {
@@ -34,7 +47,9 @@ a {
 .main {
   width: 100%;
   background-color: #fefefe;
-  height: 10000px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  height: 9000px;
   position: relative;
 }
 
@@ -44,6 +59,18 @@ a {
   bottom: 60px;
   text-align: right;
   font-size: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.occupation > div {
+  display: block;
+  overflow: hidden;
+}
+
+.occupation > div > span {
+  display: block;
+  transform: translateY(110%);
 }
 
 .location {
@@ -54,6 +81,15 @@ a {
   display: flex;
   flex-direction: column;
   font-size: 20px;
+}
+
+.location > div {
+  overflow: hidden;
+}
+
+.location > div > span {
+  display: block;
+  transform: translateY(110%);
 }
 
 nav {
@@ -71,6 +107,12 @@ nav {
   top: 50px;
   left: 60px;
   font-size: 20px;
+  overflow: hidden;
+}
+
+.name > span {
+  display: block;
+  transform: translateY(110%);
 }
 
 h1,
@@ -88,6 +130,12 @@ h3 {
   text-align: center;
   left: 50%;
   transform: translate(-50%);
+  opacity: 0.3;
+}
+
+.text-tuple span {
+  font-family: "Cormorant Garamond";
+  font-size: 32px;
 }
 
 .text-tuple h1 {
@@ -103,12 +151,21 @@ h3 {
   margin: 0;
 }
 
+.canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  pointer-events: none;
+  overflow: hidden;
+}
+
 #scene {
-  position: fixed;
-  z-index: 100 !important;
+  position: absolute;
   width: 100%;
   height: 100%;
-  /* pointer-events: none; */
 }
 
 #gui {
@@ -121,4 +178,205 @@ h3 {
 
 .dg.ac {
   z-index: 1000 !important;
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  z-index: 100;
+
+  display: none;
+}
+
+.ls-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60vw;
+  transform: translate(-50%, -50%);
+  font-size: 144px;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.ls-n-line {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.ls-n-line-2 {
+  align-self: flex-end;
+}
+
+.intro-img-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #dedede;
+}
+
+.intro-img-container-inner {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 50%;
+  height: 0%;
+  overflow: hidden;
+}
+
+.intro-img-container-inner img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+nav > div {
+  overflow: hidden;
+}
+
+nav > div > a > span {
+  display: block;
+  transform: translateY(110%);
+}
+
+.bottom-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 175px;
+
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* opacity: 0.4; */
+  height: max-content;
+  width: 100%;
+  color: #ffffff;
+}
+
+.bottom-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: calc(100% - 90px);
+}
+
+.bottom-details-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 764px;
+}
+
+.bottom-details-cta p {
+  margin: 0;
+  font-size: 36px;
+  font-family: "Cormorant Garamond";
+}
+
+.bottom-details-cta button {
+  opacity: 1;
+  width: max-content;
+  background-color: #fff;
+  background-clip: text;
+  border: none;
+  /* color: #fff; */
+  color: transparent;
+  font-family: "Manrope";
+  font-size: 64px;
+  position: relative;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.5s;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.bottom-details-cta button:hover {
+  opacity: 1;
+}
+
+.bottom-details-cta button::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+  transform: translateX(-100%);
+  transition: all 0.5s;
+}
+
+.bottom-details-cta button:hover::after {
+  transform: translateX(0%);
+}
+
+.bottom-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.bottom-contacts-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bottom-contacts-label {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 300;
+  font-family: "Cormorant Garamond";
+}
+
+.bottom-contacts-info {
+  margin: 0;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.bottom-text {
+  opacity: 0.5;
+  font-size: 12px;
+}
+
+.img-container {
+  position: absolute;
+  overflow: hidden;
+}
+
+.img-container img {
+  position: relative;
+  transform: scale(1.25);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.img-cover {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00090a;
 }

@@ -8,46 +8,115 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <canvas id="scene"></canvas>
-    <div>
-      <section class="intro">
-        <img
-          style="user-select: none"
-          src="/ed/1.jpg"
-          draggable="false"
-          alt=""
-        />
-
-        <div class="name">ÉD</div>
-
-        <nav>
-          <div>
-            <a href=""><span>Home</span></a>
+    <div class="scroll-wrapper">
+      <div class="bottom-content">
+        <div class="bottom-details">
+          <div class="bottom-details-cta">
+            <p>
+              You are welcome to connect with me! Let’s bring your vision to
+              life — with sophistication, strategy, and unmistakable style.
+            </p>
+            <div class="bottom-details-cta-container">
+              <button>bonjour@elodiedubois.com</button>
+            </div>
           </div>
-          <div>
-            <a href=""><span>Philosophy & Vision</span></a>
-          </div>
-          <div>
-            <a href=""><span>Contacts</span></a>
-          </div>
-        </nav>
 
-        <div class="location">
-          <span>Lost in between</span>
-          <span><b>Paris</b> and <b>Berlin</b></span>
+          <div class="bottom-contacts">
+            <div class="bottom-contacts-item">
+              <p class="bottom-contacts-label">Address</p>
+              <p class="bottom-contacts-info">
+                6 Rue Aristide Ollivier, 34000, Paris <br />
+                France
+              </p>
+            </div>
+            <div class="bottom-contacts-item">
+              <p class="bottom-contacts-label">Phone</p>
+              <p class="bottom-contacts-info">+33 (5) 04 67 60 47 21</p>
+            </div>
+          </div>
         </div>
-        <div class="occupation">
-          <span
-            >Award winning fashion <br />
-            designer / stylist</span
-          >
+
+        <div class="bottom-text">
+          © Élodie Dubois. 2025. All rights reserved.
         </div>
-      </section>
-      <section class="main"></section>
+      </div>
+      <div class="parent">
+        <!-- <div class="loading-screen">
+          <div class="ls-name">
+            <div class="ls-n-line">
+              <div class="ls-n-l-letter">É</div>
+              <div class="ls-n-l-letter">l</div>
+              <div class="ls-n-l-letter">o</div>
+              <div class="ls-n-l-letter">d</div>
+              <div class="ls-n-l-letter">i</div>
+              <div class="ls-n-l-letter">e</div>
+            </div>
+            <div class="ls-n-line ls-n-line-2">
+              <div class="ls-n-l-letter">D</div>
+              <div class="ls-n-l-letter">u</div>
+              <div class="ls-n-l-letter">b</div>
+              <div class="ls-n-l-letter">o</div>
+              <div class="ls-n-l-letter">i</div>
+              <div class="ls-n-l-letter">s</div>
+            </div>
+          </div>
+        </div> -->
+        <div class="canvas-container">
+          <canvas id="scene"></canvas>
+        </div>
+
+        <div class="content">
+          <section class="intro">
+            <div class="intro-img-container">
+              <div class="intro-img-container-inner">
+                <img
+                  style="user-select: none"
+                  src="/ed/1.jpg"
+                  draggable="false"
+                  alt=""
+                />
+              </div>
+            </div>
+
+            <div class="name">
+              <span> ÉD </span>
+            </div>
+
+            <nav>
+              <div>
+                <a href="#"><span>Home</span></a>
+              </div>
+              <div>
+                <a href="#"><span>Philosophy & Vision</span></a>
+              </div>
+              <div>
+                <a href="#"><span>Contacts</span></a>
+              </div>
+            </nav>
+
+            <div class="location">
+              <div>
+                <span>Lost in between</span>
+              </div>
+              <div>
+                <span><b>Paris</b> and <b>Berlin</b></span>
+              </div>
+            </div>
+            <div class="occupation">
+              <div>
+                <span>Award winning fashion</span>
+              </div>
+              <div>
+                <span>designer / stylist</span>
+              </div>
+            </div>
+          </section>
+          <section class="main"></section>
+        </div>
+      </div>
     </div>
 
     <script type="x-shader/x-fragment" id="PCSS">
-
       #define LIGHT_WORLD_SIZE 0.005
       #define LIGHT_FRUSTUM_WIDTH 3.75
       #define LIGHT_SIZE_UV (LIGHT_WORLD_SIZE / LIGHT_FRUSTUM_WIDTH)
@@ -139,7 +208,6 @@
     </script>
 
     <script type="x-shader/x-fragment" id="PCSSGetShadow">
-
       return PCSS( shadowMap, shadowCoord );
     </script>
   </body>

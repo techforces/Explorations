@@ -39,6 +39,7 @@ export const data = [
     id: 4,
     type: "text",
     gapY: 578,
+    num: "01",
     headline: "Ethereal Tranquillity",
     description:
       "Inspired by the serene beauty of nature, this collection features flowing silhouettes and delicate fabrics, evoking a sense of tranquility and grace.",
@@ -83,6 +84,7 @@ export const data = [
     id: 9,
     type: "text",
     gapY: 470,
+    num: "02",
     headline: "Timeless Classics",
     description:
       "Celebrating the enduring appeal of simplicity, this collection showcases timeless essentials crafted with impeccable craftsmanship and refined aesthetics.",
@@ -109,6 +111,7 @@ export const data = [
     id: 12,
     type: "text",
     gapY: 1015,
+    num: "03",
     headline: "Urban Chic",
     description:
       "Infusing urban vibes with understated luxury, this collection offers sleek lines, bold accents, and versatile pieces designed for the modern cosmopolitan.",
