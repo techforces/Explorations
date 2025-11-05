@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wave</title>
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../description.css" />
   </head>
   <body>
     <canvas id="stage"></canvas>
     <div class="cover"></div>
     <script type="module" src="./script.ts"></script>
+    <script type="module" src="../description.js"></script>
 
     <div class="content">
       <div class="text text-1">
@@ -26,5 +28,24 @@
       </div>
     </div>
     <div class="back-btn">← Home</div>
+
+    <div class="description">
+      <div class="description-text">
+        Here I am experimenting with page transitions, understanding the logic
+        behind it while reusing the same wave function. <br />
+        <br />
+        Lyrics from
+        <a href="https://www.youtube.com/watch?v=GoLJJRIWCLU"
+          >Radiohead - Jigsaw Falling Into Place</a
+        >
+        and
+        <a href="https://www.youtube.com/watch?v=4KlCfiwp9Zw"
+          >Jay-Jay Johanson - Hallucination</a
+        >
+      </div>
+      <div class="description-button">
+        <span>What am I looking at?</span><img src="../cross.svg" alt="" />
+      </div>
+    </div>
   </body>
 </html>

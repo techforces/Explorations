@@ -7,7 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
 export function InitGrid() {
   let imageContainers: any;
   let imageFlags: number[];
-  let visibleImagesCount = 0;
+
+  imageFlags;
 
   window.addEventListener("load", () => {
     // Position containers and images
@@ -18,10 +19,10 @@ export function InitGrid() {
       if (data[i].type === "img") {
         const div = document.createElement("div");
         div.classList.add("img-container");
-        div.style.width = `${data[i].w}px`;
+        div.style.width = `${(data[i].w / 1920) * 100}%`;
         div.style.height = `${data[i].h}px`;
 
-        div.style.left = `${data[i].x}px`;
+        div.style.left = `${(data[i].x / 1920) * 100}%`;
         sum += data[i].gapY;
         div.style.top = `${sum}px`;
 

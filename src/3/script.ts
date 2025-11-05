@@ -18,7 +18,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 /* Misc */
-let cover = document.getElementsByClassName("cover")[0];
+let cover = document.getElementsByClassName("cover")[0] as any;
 let body = document.getElementsByTagName("body")[0];
 gsap.registerPlugin(CustomEase);
 
@@ -53,8 +53,8 @@ let materials = [[], [], []];
 let currentRow;
 let currentIdx;
 
-let text = document.querySelectorAll(".text div span");
-let backBtn = document.querySelector(".back-btn");
+let text = document.querySelectorAll(".text div span") as any;
+let backBtn = document.querySelector(".back-btn") as HTMLDivElement;
 
 const planeGeometry = new THREE.PlaneGeometry(150, 200, 100, 100);
 const width = 150;
@@ -93,7 +93,6 @@ function loadImage(i) {
   }
 }
 loadImage(imgIndex);
-loader.load();
 
 function createPlanes() {
   for (let i = 0; i < data.length; i++) {
@@ -105,7 +104,7 @@ function createPlanes() {
         time: { value: performance.now() },
         mu: { value: [] },
         arr_length: { value: 0 },
-        u_image: { type: "t", value: textures[i] },
+        u_image: { value: textures[i] },
         imageRatio: { value: imageRatio },
         planeRatio: { value: planeRatio },
         u_x: { value: 0 },
@@ -134,7 +133,6 @@ function createPlanes() {
 
     // Update userData
     planes[row][lastElem].userData.row = row;
-    console.log(row);
     planes[row][lastElem].userData.pos = pos;
     planes[row][lastElem].userData.idx = planes[row].length - 1;
 
@@ -243,6 +241,9 @@ function showText() {
     onUpdate: () => {
       backBtn.style.opacity = `${val.opacity}`;
     },
+    onComplete: () => {
+      backBtn?.classList.add("clickable");
+    },
   });
 }
 
@@ -272,7 +273,6 @@ function hideScene() {
   };
 
   cover.style.display = "block";
-  // console.log(cover);
   cover.style.opacity = "0";
   gsap.to(val, 0.4, {
     opacity: 1,
@@ -285,6 +285,7 @@ function hideScene() {
       }
 
       backBtn.style.opacity = "0";
+      backBtn?.classList.remove("clickable");
 
       for (let i = 0; i < planes.length; i++) {
         for (let j = 0; j < planes[i].length; j++) {
@@ -322,8 +323,6 @@ document.addEventListener("click", () => {
 
     currentRow = row;
     currentIdx = idx;
-
-    console.log(row, idx);
 
     let val = {
       w: width,
@@ -376,7 +375,7 @@ document.addEventListener("click", () => {
 
           gsap.to(v, 0.5, {
             delay: i * 0.2 + j * 0.1,
-            h: 0.01,
+            h: 0,
             y: planes[i][j].position.y + height / 2,
             ease: "power1.inOut",
             onUpdate: () => {
@@ -395,7 +394,7 @@ document.addEventListener("click", () => {
   // planes[intersects[0].object.userData.row][intersects[0].object.userData.pos];
 });
 
-document.addEventListener("mousemove", () => {
+document.addEventListener("mousemove", (event) => {
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 

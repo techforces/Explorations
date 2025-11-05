@@ -65,12 +65,12 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Inter;
+  font-family: Inter, Helvetica, sans-serif;
   /* background-color: #cacaca; */
 }
 
 .main {
-  padding: 200px 33vw;
+  padding: 200px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -155,4 +155,9 @@ canvas {
   cursor: pointer;
   user-select: none;
   opacity: 0;
+  pointer-events: none;
+}
+
+.back-btn.clickable {
+  pointer-events: all;
 }

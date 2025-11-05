@@ -1,12 +1,15 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 import vertexShader from "./vertex.glsl";
 import fragmentShader from "./fragment.glsl";
 
 /* Set up */
 const perspective = 800;
-const canvas = document.getElementById("stage");
+const canvas = document.getElementById("stage") as
+  | HTMLCanvasElement
+  | OffscreenCanvas
+  | undefined;
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
@@ -28,6 +31,7 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.set(0, 0, perspective);
 
 const controls = new OrbitControls(camera, renderer.domElement);
+controls;
 
 /* Body */
 const planeGeometry = new THREE.PlaneGeometry(900, 500, 1000, 1000);
@@ -52,7 +56,7 @@ const line = new THREE.LineSegments(
   edges,
   new THREE.LineBasicMaterial({ color: 0xff0000 })
 );
-scene.add(line);
+// scene.add(line);
 
 plane.rotation.x = -0.5;
 line.rotation.x = -0.5;

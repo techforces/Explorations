@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import gsap from "gsap";
 
 import vertexShader from "./vertex.glsl";
@@ -29,6 +29,7 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.set(0, 0, perspective);
 
 const controls = new OrbitControls(camera, renderer.domElement);
+controls;
 
 const loader = new THREE.TextureLoader();
 let texture;
@@ -49,7 +50,7 @@ loader.load(
   undefined,
 
   // onError callback
-  function (err) {
+  function () {
     console.error("An error happened.");
   }
 );
@@ -62,7 +63,7 @@ const planeMaterial = new THREE.ShaderMaterial({
     time: { value: performance.now() },
     mu: { value: [] },
     arr_length: { value: 0 },
-    u_image: { type: "t", value: texture },
+    u_image: { value: texture },
   },
   vertexShader: vertexShader,
   fragmentShader: fragmentShader,

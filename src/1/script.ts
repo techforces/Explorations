@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import gsap from "gsap";
 
 import vertexShader from "./vertex.glsl";
@@ -29,6 +29,7 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.set(0, 0, perspective);
 
 const controls = new OrbitControls(camera, renderer.domElement);
+controls;
 
 /* Body */
 const planeGeometry = new THREE.PlaneGeometry(2000, 2000, 1000, 1000);
